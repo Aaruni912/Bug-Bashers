@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attractive Landing Page with GSAP</title>
+  <script src="https://unpkg.com/gsap@3.9.0/dist/gsap.min.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
+      color: #fff;
+    }
+
+    header {
+      background-color: #2980b9;
+      padding: 15px;
+      text-align: center;
+    }
+
+    header a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      height: 80vh;
+    }
+
+    .box {
+      width: 25%;
+      padding: 20px;
+      background-color: #2ecc71;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+      color: #3498db;
+    }
+
+    p {
+      margin: 0;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  
+  <h1 style="font-family: 'Pacifico', cursive; margin: 10px 0;">Bug-Bashers</h1>
+</header>
+
+<div class="container">
+  <div class="box" id="box1" onclick="redirectToPage1()">
+    <h2>Password Generator</h2>
+    <p>Click here to generate random passwords</p>
+  </div>
+
+  <div class="box" id="box2" onclick="redirectToPage2()">
+    <h2>Password Manager</h2>
+    <p>Click here to manage and save your passwords</p>
+  </div>
+
+  <div class="box" id="box2" onclick="redirectToTelegram()">
+
+    <a href="https://t.me/bugpassbot?start=YourStartParameter">Open in Telegram</a>
+  </div>
+</div>
+
+<script>
+  gsap.from(".box", { duration: 1, opacity: 0, y: 50, stagger: 0.2 });
+
+  function redirectToPage1() {
+    gsap.to("#box1", { duration: 0.5, scale: 1.2, onComplete: () => {
+      window.location.href = 'main.html'; 
+    }});
+  }
+
+  function redirectToPage2() {
+    gsap.to("#box2", { duration: 0.5, scale: 1.2, onComplete: () => {
+      window.location.href = 'Manager/index.html'; 
+    }});
+  }
+</script>
+
+</body>
+</html>

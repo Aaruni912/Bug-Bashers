@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #container {
+            background-image: 1.jpeg;
+            background-color: #08AEEA;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(0,0,0,0.15) 100%), radial-gradient(at top center, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.40) 120%) #989898;
+ background-blend-mode: multiply,multiply;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+        }
+
+        #password {
+            font-size: 24px;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 300px;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        button {
+            background-color: #450000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        label {
+            font-size: 16px;
+            margin-right: 15px;
+        }
+
+        input[type="number"] {
+            padding: 5px;
+            width: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Password Generator</h1>
+        <input type="text" id="password" readonly>
+        <br>
+        <button id="generate">Generate Password</button>
+        <br><br>
+        <input type="checkbox" id="numbers" checked>
+        <label for="numbers">Include Numbers</label>
+        <input type="checkbox" id="symbols" checked>
+        <label for="symbols">Include Symbols</label>
+        <input type="checkbox" id="uppercase" checked>
+        <label for="uppercase">Uppercase Letters</label>
+        <input type="checkbox" id="lowercase" checked>
+        <label for="lowercase">Lowercase Letters</label>
+        <br><br>
+        <label for="length">Password Length:</label>
+        <input type="number" id="length" value="12" min="6" max="12">
+    </div>
+
+ <script>
+    function generatePassword() {
+        var password = '';
+        var maxLength = 12; // Maximum length for the password
+        var length = document.getElementById('length').value;
+        var charset = '';
+        
+        // Validate password length
+        if (length > maxLength) {
+            alert('Password length cannot exceed ' + maxLength + ' characters.');
+            return;
+        }
+
+        if (document.getElementById('numbers').checked)
+            charset += '0123456789';
+        if (document.getElementById('symbols').checked)
+            charset += '!@#$%^&*()_+{}[]|:;<>,.?/~';
+        if (document.getElementById('uppercase').checked)
+            charset += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        if (document.getElementById('lowercase').checked)
+            charset += 'abcdefghijklmnopqrstuvwxyz';
+
+        for (var i = 0; i < length; i++) {
+            password += charset.charAt(Math.floor(Math.random() * charset.length));
+        }
+
+        document.getElementById('password').value = password;
+    }
+
+    document.getElementById('generate').addEventListener('click', generatePassword);
+</script>
+
+</body>
+</html>
